@@ -1,0 +1,14 @@
+#!/bin/bash
+
+VERSION=v6.3.1-sky-v2.1.x
+RELEASE_NAME=$VERSION
+REPOSITORY=mariadb/skysql-enterprise-columnstore
+LOCAL_IMAGE=$REPOSITORY:$RELEASE_NAME
+REMOTE_IMAGE=$LOCAL_IMAGE
+
+docker buildx build . \
+    --push \
+    --platform linux/amd64 \
+    --file ledok/Dockerfile \
+    --tag $LOCAL_IMAGE \
+    --tag $REMOTE_IMAGE
